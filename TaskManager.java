@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 // Manages a list of tasks
 class TaskManager {
     private ArrayList<Task> tasks = new ArrayList<>();
@@ -25,3 +26,4 @@ class TaskManager {
         }
     }
 }
+ 
