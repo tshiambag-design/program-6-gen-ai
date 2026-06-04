@@ -1,5 +1,6 @@
 import java.util.Scanner;
-// Main program with a simple menu
+import java.util.InputMismatchException;
+
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -12,15 +13,34 @@ public class Main {
             System.out.println("4. Exit");
             System.out.print("Choose an option: ");
 
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // consume newline
+            int choice;
+
+            try {
+                choice = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter a valid number.");
+                scanner.nextLine(); // clear invalid input
+                continue;
+            }
+
+            scanner.nextLine(); // consume leftover newline
 
             switch (choice) {
                 case 1:
                     System.out.print("Task name: ");
                     String name = scanner.nextLine();
+
                     System.out.print("Priority (1=High, 2=Medium, 3=Low): ");
-                    int priority = scanner.nextInt();
+                    int priority;
+
+                    try {
+                        priority = scanner.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Priority must be a number.");
+                        scanner.nextLine();
+                        break;
+                    }
+
                     manager.addTask(name, priority);
                     break;
 
@@ -30,7 +50,16 @@ public class Main {
 
                 case 3:
                     System.out.print("Enter task index to mark done: ");
-                    int index = scanner.nextInt();
+                    int index;
+
+                    try {
+                        index = scanner.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Index must be a number.");
+                        scanner.nextLine();
+                        break;
+                    }
+
                     manager.markTaskDone(index);
                     break;
 
@@ -43,6 +72,6 @@ public class Main {
             }
         }
     }
-}
+}        
 
        
