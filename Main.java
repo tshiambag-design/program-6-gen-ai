@@ -1,4 +1,5 @@
-import java.util.Scanner;
+
+                  import java.util.Scanner;
 import java.util.InputMismatchException;
 
 public class Main {
@@ -11,6 +12,7 @@ public class Main {
             System.out.println("2. List Tasks");
             System.out.println("3. Mark Task as Done");
             System.out.println("4. Exit");
+            System.out.println("5. Delete Task");               
             System.out.print("Choose an option: ");
 
             int choice;
@@ -63,6 +65,22 @@ public class Main {
                     manager.markTaskDone(index);
                     break;
 
+                
+                case 5:
+                    System.out.print("Enter task index to delete: ");
+                    int deleteIndex;
+
+                    try {
+                        deleteIndex = scanner.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Index must be a number.");
+                        scanner.nextLine();
+                        break;
+                    }
+
+                    manager.deleteTask(deleteIndex);
+                    break;
+
                 case 4:
                     System.out.println("Goodbye.");
                     return;
@@ -72,6 +90,4 @@ public class Main {
             }
         }
     }
-}        
-
-       
+}
